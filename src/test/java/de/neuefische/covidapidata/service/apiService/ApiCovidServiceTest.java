@@ -2,6 +2,7 @@ package de.neuefische.covidapidata.service.apiService;
 
 import de.neuefische.covidapidata.model.ApiCovidModel;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -20,8 +21,8 @@ class ApiCovidServiceTest {
         String actualCombinedUrl = testService.combinedUrl(givenCountry);
 
         //Then
-        assertThat(actualCombinedUrl, is("https://api.covid19api.com/country/germany"+
-                "/status/confirmed/live?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z"));
+        assertThat(actualCombinedUrl, is("https://api.covid19api.com/total/country/germany"+
+                "/status/confirmed?from=2020-09-30T00:00:00Z&to=2020-10-07T00:00:00Z"));
     }
 
     /*
