@@ -1,5 +1,7 @@
 package de.neuefische.covidapidata.service;
 
+import de.neuefische.covidapidata.model.ApiCovidModel;
+import de.neuefische.covidapidata.model.CovidModel;
 import de.neuefische.covidapidata.service.apiService.ApiCovidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,10 @@ public class CovidCountryWeekService {
         this.apiCovidService = apiCovidService;
     }
 
-    public List<ApiCovidService> getConfirmedCasesForWeek(){
-
+    public CovidModel getConfirmedCasesForWeek(String country){
+        ApiCovidModel[] covidValues = apiCovidService.getCovidApiCountryConfirmedLastWeek(country);
+        int averageCasesLastSevenDays = (covidValues[6].getCases() - covidValues[0].getCases()) / 7;
+        return new CovidModel(averageCasesLastSevenDays, country);
     }
 
 }
