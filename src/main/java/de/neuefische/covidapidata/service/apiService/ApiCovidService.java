@@ -11,7 +11,7 @@ public class ApiCovidService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public String combinedUrl(String country) {
-        return "https://api.covid19api.com/country/"+country+
+        return "https://api.covid19api.com/country/"+country.toLowerCase()+
                 "/status/confirmed/live?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z";
     }
 
