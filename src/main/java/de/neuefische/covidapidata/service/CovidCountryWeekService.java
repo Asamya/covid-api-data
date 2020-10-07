@@ -2,6 +2,7 @@ package de.neuefische.covidapidata.service;
 
 import de.neuefische.covidapidata.model.ApiCovidModel;
 import de.neuefische.covidapidata.model.CovidModel;
+import de.neuefische.covidapidata.model.CovidSchoolTodayModel;
 import de.neuefische.covidapidata.service.apiService.ApiCovidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,8 @@ public class CovidCountryWeekService {
         return new CovidModel(averageCasesLastSevenDays, country);
     }
 
+    public CovidSchoolTodayModel checkIfSchoolIsPossibleToday(String country) {
+        int averageSevenDays = getConfirmedCasesForWeek(country).getCases();
+        return new CovidSchoolTodayModel(averageSevenDays < 100);
+    }
 }

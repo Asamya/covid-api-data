@@ -1,6 +1,7 @@
 package de.neuefische.covidapidata.controller;
 
 import de.neuefische.covidapidata.model.CovidModel;
+import de.neuefische.covidapidata.model.CovidSchoolTodayModel;
 import de.neuefische.covidapidata.service.CovidCountryWeekService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,10 @@ public class CovidCountryWeekController {
         return covidCountryWeekService.getConfirmedCasesForWeek(country);
     }
 
+    @GetMapping("school/{country}")
+    public CovidSchoolTodayModel checkIfSchoolIsPossibleToday(@PathVariable String country) {
+        return covidCountryWeekService.checkIfSchoolIsPossibleToday(country);
+    }
 
 
 }
