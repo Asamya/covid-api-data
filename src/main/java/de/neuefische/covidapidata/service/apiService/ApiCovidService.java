@@ -17,6 +17,7 @@ public class ApiCovidService {
 
     public ApiCovidModel[] getCovidApiCountryConfirmedLastWeek(String country) {
         ResponseEntity<ApiCovidModel[]> response = restTemplate.getForEntity(combinedUrl(country), ApiCovidModel[].class);
+        response.getStatusCode();
         return response.getBody();
     }
 
