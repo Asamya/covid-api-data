@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class CovidModel {
 
     private int cases;
+    private String date;
     private String country;
 
 }

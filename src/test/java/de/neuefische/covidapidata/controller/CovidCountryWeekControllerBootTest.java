@@ -28,10 +28,14 @@ class CovidCountryWeekControllerBootTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    /*
     @MockBean
     private ApiCovidService apiCovidService;
 
 
+     */
+
+    /*
     @Test
     void checkForResultOfCasesForLastSevenDays() {
         //Given
@@ -55,6 +59,8 @@ class CovidCountryWeekControllerBootTest {
         assertThat(response.getBody(), is(new CovidModel(290, "germany")));
 
     }
+
+     */
 
     @Test
     void checkIfSchoolIsPossibleToday() {

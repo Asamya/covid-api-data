@@ -14,10 +14,9 @@ public class ApiCovidModel {
     @JsonProperty("Cases")
     private int cases;
 
-    /*@JsonProperty("Date")
+    @JsonProperty("Date")
     private String date;
 
-     */
 
     @JsonProperty("Country")
     private String country;

@@ -19,8 +19,18 @@ public class ApiCovidService {
                 "/status/confirmed?from="+lastSevenDays+"T00:00:00Z&to="+dayBefore+"T00:00:00Z";
     }
 
+    /*
+    public String startToTodayUrl(String country) {
+        LocalDate dayBefore = LocalDate.now().minusDays(1);
+        return "https://api.covid19api.com/total/country/"+country+
+                "/status/confirmed?from=2020-03-01T00:00:00Z&to="+dayBefore+"T00:00:00Z";
+    }
+
+     */
+
     public ApiCovidModel[] getCovidApiCountryConfirmedLastWeek(String country) {
-        ResponseEntity<ApiCovidModel[]> response = restTemplate.getForEntity(combinedUrl(country), ApiCovidModel[].class);
+        String url = combinedUrl(country);
+        ResponseEntity<ApiCovidModel[]> response = restTemplate.getForEntity(url, ApiCovidModel[].class);
         response.getStatusCode();
         return response.getBody();
     }
