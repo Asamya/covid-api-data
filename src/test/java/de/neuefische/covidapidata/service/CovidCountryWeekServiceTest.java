@@ -36,4 +36,23 @@ class CovidCountryWeekServiceTest {
         ));
 
     }
+
+    @Test
+    void testIfListWithCasesOver1000perDayComesBack(){
+        //Given
+        List<ApiCovidModel> apiCovidModel = List.of(
+                new ApiCovidModel(3000,"2020-09-05T00:00:00Z", "Germany"),
+                new ApiCovidModel(500,"2020-09-27T00:00:00Z", "Germany"),
+                new ApiCovidModel(1001,"2020-09-08T00:00:00Z", "Germany")
+        );
+
+        //When
+        List<CovidModel> actual = covidCountryWeekService.getDaysWithOver1000Cases(apiCovidModel);
+
+        //Then
+        assertThat(actual, contains(
+                new CovidModel(3000,"2020-09-05T00:00:00Z", "Germany"),
+                new CovidModel(1001,"2020-09-08T00:00:00Z", "Germany")
+        ));
+    }
 }

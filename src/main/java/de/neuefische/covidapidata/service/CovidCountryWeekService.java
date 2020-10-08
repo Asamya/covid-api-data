@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,29 @@ public class CovidCountryWeekService {
         return dayOfWeek.equals(DayOfWeek.SATURDAY) || dayOfWeek.equals(DayOfWeek.SUNDAY);
     }
 
-    
+    public List<ApiCovidModel> listOfCasesPerCountry(String country){
+        ApiCovidModel[] covidValues = apiCovidService.getCovidApiCountryConfirmedLastWeek(country);
+        return Arrays.stream(covidValues)
+                .map(covidItem -> new ApiCovidModel(covidItem.getCases(), covidItem.getDate(), covidItem.getCountry()))
+                .collect(Collectors.toList());
+    }
+
+    public List<CovidModel> getDaysWithOver1000Cases(List<ApiCovidModel> apiCovidModels){
+        return apiCovidModels.stream()
+                .filter(apiCovidModel -> apiCovidModel.getCases() > 1000)
+                .map(apiCovidModel -> new CovidModel(apiCovidModel.getCases(),apiCovidModel.getDate(), apiCovidModel.getCountry()))
+                .collect(Collectors.toList());
+
+    }
+
+    public Optional<CovidModel> getAnyCasesOver50000(List<ApiCovidModel> apiCovidModels){
+        return apiCovidModels.stream()
+                .filter(apiCovidModel -> apiCovidModel.getCases() > 50000)
+                .map(apiCovidModel -> new CovidModel(apiCovidModel.getCases(), apiCovidModel.getDate(), apiCovidModel.getCountry()))
+                .findAny();
+    }
+
+
 
 
 

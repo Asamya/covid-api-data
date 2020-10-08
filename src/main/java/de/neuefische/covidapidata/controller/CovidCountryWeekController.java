@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("covidweekcountry")
@@ -32,5 +33,14 @@ public class CovidCountryWeekController {
         return covidCountryWeekService.checkIfSchoolIsPossibleToday(country);
     }
 
+    @GetMapping("cases/over1000/{country}")
+    public List<CovidModel> getDaysWithOver1000Cases(@PathVariable String country) {
+        return covidCountryWeekService.getDaysWithOver1000Cases(covidCountryWeekService.listOfCasesPerCountry(country));
+    }
+
+    @GetMapping("cases/any/{country}")
+    public Optional<CovidModel> getAnyCasesOver50000(@PathVariable String country) {
+        return covidCountryWeekService.getAnyCasesOver50000(covidCountryWeekService.listOfCasesPerCountry(country));
+    }
 
 }
