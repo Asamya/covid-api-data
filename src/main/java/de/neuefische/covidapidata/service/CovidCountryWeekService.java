@@ -22,8 +22,8 @@ public class CovidCountryWeekService {
 
     public CovidModel getConfirmedCasesForWeek(String country){
         ApiCovidModel[] covidValues = apiCovidService.getCovidApiCountryConfirmedLastWeek(country);
-        int averageCasesLastSevenDays = (covidValues[6].getCases() - covidValues[0].getCases()) / 7;
-        return new CovidModel(averageCasesLastSevenDays, country);
+        double averageCasesLastSevenDays = (covidValues[covidValues.length - 1].getCases() - covidValues[0].getCases()) / 7;
+        return new CovidModel((int) averageCasesLastSevenDays, country);
     }
 
     public CovidSchoolTodayModel checkIfSchoolIsPossibleToday(String country) {
